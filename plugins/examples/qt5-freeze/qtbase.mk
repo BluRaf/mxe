@@ -47,7 +47,7 @@ define $(PKG)_BUILD
             -force-pkg-config \
             -no-use-gold-linker \
             -release \
-            -static \
+            $(if $(BUILD_STATIC), -static,)$(if $(BUILD_SHARED), -shared,) \
             -prefix '$(PREFIX)/$(TARGET)/$($(PKG)_VERSION_ID)' \
             -no-icu \
             -opengl desktop \
