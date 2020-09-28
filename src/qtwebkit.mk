@@ -9,8 +9,8 @@ $(PKG)_CHECKSUM := f688e039e2bdc06e2e46680f3ef57715e1b7d6ea69fd76899107605a8f371
 $(PKG)_SUBDIR   := qtwebkit-everywhere-src-$($(PKG)_VERSION)
 $(PKG)_FILE     := qtwebkit-everywhere-src-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := https://download.qt.io/snapshots/ci/qtwebkit/5.212/latest/src/submodules/$($(PKG)_FILE)
-$(PKG)_DEPS     := cc libxml2 libxslt libwebp qtbase qtmultimedia qtquickcontrols \
-                   qtsensors qtwebchannel sqlite
+$(PKG)_DEPS     := cc libxml2 libxslt libwebp qtbase qtquickcontrols \
+                   qtsensors qtwebchannel sqlite gstreamer
 
 define $(PKG)_BUILD_SHARED
     cd '$(BUILD_DIR)' && $(TARGET)-cmake '$(SOURCE_DIR)' \
@@ -22,9 +22,10 @@ define $(PKG)_BUILD_SHARED
         -DENABLE_MEDIA_SOURCE=ON \
         -DENABLE_VIDEO=ON \
         -DENABLE_WEB_AUDIO=ON \
-        -DUSE_GSTREAMER=OFF \
+        -DENABLE_JIT=OFF \
+        -DUSE_GSTREAMER=ON \
         -DUSE_MEDIA_FOUNDATION=OFF \
-        -DUSE_QT_MULTIMEDIA=ON
+        -DUSE_QT_MULTIMEDIA=OFF
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)' VERBOSE=1 || $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)' VERBOSE=1
     $(MAKE) -C '$(BUILD_DIR)' -j 1 install
 

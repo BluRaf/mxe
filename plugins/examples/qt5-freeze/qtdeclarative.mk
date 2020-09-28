@@ -21,5 +21,5 @@ define $(PKG)_BUILD
     
     # Workaround for fixing build of current version of QtWebkit with Qt 5.7.1
     cp $(PWD)/plugins/examples/qt5-freeze/Qt5QuickConfig.cmake \
-       $(PREFIX)/$(TARGET)/qt5.7/lib/cmake/Qt5Quick/
+       $(PREFIX)/$(TARGET)/qt5/lib/cmake/Qt5Quick/
 endef
