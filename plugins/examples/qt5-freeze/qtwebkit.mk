@@ -1,16 +1,15 @@
 # This file is part of MXE. See LICENSE.md for licensing information.
 
 PKG             := qtwebkit
-$(PKG)_WEBSITE  := https://github.com/annulen/webkit
+$(PKG)_WEBSITE  := https://github.com/qtwebkit/qtwebkit
 $(PKG)_DESCR    := QtWebKit
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 5.13.1
-$(PKG)_CHECKSUM := f688e039e2bdc06e2e46680f3ef57715e1b7d6ea69fd76899107605a8f371ea3
-$(PKG)_SUBDIR   := qtwebkit-everywhere-src-$($(PKG)_VERSION)
-$(PKG)_FILE     := qtwebkit-everywhere-src-$($(PKG)_VERSION).tar.xz
-$(PKG)_URL      := https://download.qt.io/snapshots/ci/qtwebkit/5.212/latest/src/submodules/$($(PKG)_FILE)
+$(PKG)_VERSION  := 00698c5
+$(PKG)_CHECKSUM := 93cf4dc769cad351d68b6ad625445022bab9987113610843245978cd4bd0cf64
+$(PKG)_GH_CONF  := qtwebkit/qtwebkit/branches/qtwebkit-dev-wip
+#$(PKG)_URL      := https://github.com/qtwebkit/qtwebkit/archive/qtwebkit-dev-wip.zip
 $(PKG)_DEPS     := cc libxml2 libxslt libwebp qtbase qtmultimedia qtquickcontrols \
-                   qtsensors qtwebchannel sqlite
+                   qtsensors qtwebchannel sqlite libtasn1
 
 define $(PKG)_BUILD_SHARED
     cd '$(BUILD_DIR)' && $(TARGET)-cmake '$(SOURCE_DIR)' \
@@ -22,6 +21,7 @@ define $(PKG)_BUILD_SHARED
         -DENABLE_MEDIA_SOURCE=ON \
         -DENABLE_VIDEO=ON \
         -DENABLE_WEB_AUDIO=ON \
+        -DENABLE_JIT=OFF \
         -DUSE_GSTREAMER=OFF \
         -DUSE_MEDIA_FOUNDATION=OFF \
         -DUSE_QT_MULTIMEDIA=ON
