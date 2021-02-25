@@ -8,8 +8,9 @@ $(PKG)_VERSION  := 00698c5
 $(PKG)_CHECKSUM := 93cf4dc769cad351d68b6ad625445022bab9987113610843245978cd4bd0cf64
 $(PKG)_GH_CONF  := qtwebkit/qtwebkit/branches/qtwebkit-dev-wip
 #$(PKG)_URL      := https://github.com/qtwebkit/qtwebkit/archive/qtwebkit-dev-wip.zip
-$(PKG)_DEPS     := cc libxml2 libxslt libwebp qtbase qtmultimedia qtquickcontrols \
-                   qtsensors qtwebchannel sqlite libtasn1
+$(PKG)_DEPS     := cc libxml2 libxslt libwebp qtbase qtquickcontrols \
+                   qtsensors qtwebchannel sqlite libtasn1 gstreamer \
+                   gst-libav gst-plugins-bad gst-plugins-good gst-plugins-base gst-plugins-ugly
 
 define $(PKG)_BUILD_SHARED
     cd '$(BUILD_DIR)' && $(TARGET)-cmake '$(SOURCE_DIR)' \
@@ -22,9 +23,13 @@ define $(PKG)_BUILD_SHARED
         -DENABLE_VIDEO=ON \
         -DENABLE_WEB_AUDIO=ON \
         -DENABLE_JIT=OFF \
-        -DUSE_GSTREAMER=OFF \
+        -DENABLE_API_TEST=OFF \
+        -DUSE_GSTREAMER=ON \
+        -DUSE_GSTREAMER_DEFAULT=ON \
+        -DUSE_GSTREAMER_MPEGTS=ON \
+        -DUSE_GSTREAMER_GL=ON \
         -DUSE_MEDIA_FOUNDATION=OFF \
-        -DUSE_QT_MULTIMEDIA=ON
+        -DUSE_QT_MULTIMEDIA=OFF
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)' VERBOSE=1 || $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)' VERBOSE=1
     $(MAKE) -C '$(BUILD_DIR)' -j 1 install
 
