@@ -9,7 +9,7 @@ $(PKG)_CHECKSUM := 93cf4dc769cad351d68b6ad625445022bab9987113610843245978cd4bd0c
 $(PKG)_GH_CONF  := qtwebkit/qtwebkit/branches/qtwebkit-dev-wip
 #$(PKG)_URL      := https://github.com/qtwebkit/qtwebkit/archive/qtwebkit-dev-wip.zip
 $(PKG)_DEPS     := cc libxml2 libxslt libwebp qtbase qtquickcontrols \
-                   qtsensors qtwebchannel sqlite libtasn1 gstreamer \
+                   qtsensors qtwebchannel sqlite libtasn1 woff2 gstreamer \
                    gst-libav gst-plugins-bad gst-plugins-good gst-plugins-base gst-plugins-ugly
 
 define $(PKG)_BUILD_SHARED
