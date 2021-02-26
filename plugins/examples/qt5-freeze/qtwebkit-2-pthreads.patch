@@ -1,0 +1,16 @@
+diff --git a/Source/WTF/wtf/Platform.h b/Source/WTF/wtf/Platform.h
+index 0b53a660db1..969b8888fa2 100644
+--- a/Source/WTF/wtf/Platform.h
++++ b/Source/WTF/wtf/Platform.h
+@@ -682,9 +682,9 @@
+ #endif
+ #endif /* OS(DARWIN) */
+ 
+-#if OS(UNIX)
++#if OS(UNIX) || OS(WINDOWS)
+ #define USE_PTHREADS 1
+-#endif /* OS(UNIX) */
++#endif /* OS(UNIX) || OS(WINDOWS) */
+ 
+ #if OS(UNIX) && !OS(FUCHSIA)
+ #define HAVE_RESOURCE_H 1
