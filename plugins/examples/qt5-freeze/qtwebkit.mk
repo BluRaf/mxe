@@ -6,6 +6,7 @@ $(PKG)_DESCR    := QtWebKit
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 00698c5
 $(PKG)_CHECKSUM := 93cf4dc769cad351d68b6ad625445022bab9987113610843245978cd4bd0cf64
+$(PKG)_PATCHES  := $(realpath $(sort $(wildcard $(dir $(lastword $(MAKEFILE_LIST)))/$(PKG)-[0-9]*.patch)))
 $(PKG)_GH_CONF  := qtwebkit/qtwebkit/branches/qtwebkit-dev-wip
 #$(PKG)_URL      := https://github.com/qtwebkit/qtwebkit/archive/qtwebkit-dev-wip.zip
 $(PKG)_DEPS     := cc libxml2 libxslt libwebp qtbase qtquickcontrols \
@@ -23,7 +24,7 @@ define $(PKG)_BUILD_SHARED
         -DENABLE_VIDEO=ON \
         -DENABLE_WEB_AUDIO=ON \
         -DENABLE_JIT=OFF \
-        -DENABLE_API_TEST=OFF \
+        -DENABLE_API_TEST=ON \
         -DUSE_GSTREAMER=ON \
         -DUSE_GSTREAMER_DEFAULT=ON \
         -DUSE_GSTREAMER_MPEGTS=ON \

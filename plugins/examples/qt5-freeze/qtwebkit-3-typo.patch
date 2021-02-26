@@ -1,0 +1,13 @@
+diff --git a/Source/WTF/wtf/PlatformQt.cmake b/Source/WTF/wtf/PlatformQt.cmake
+index 6dc802d8ceb..881a975bd2e 100644
+--- a/Source/WTF/wtf/PlatformQt.cmake
++++ b/Source/WTF/wtf/PlatformQt.cmake
+@@ -14,7 +14,7 @@ QTWEBKIT_GENERATE_MOC_FILES_CPP(WTF qt/MainThreadQt.cpp qt/RunLoopQt.cpp)
+ 
+ if (WIN32)
+     list(APPEND WTF_PUBLIC_HEADERS
+-        text/win/WCharStringEXtras.h
++        text/win/WCharStringExtras.h
+     )
+     list(APPEND WTF_SOURCES
+         text/win/StringWin.cpp
