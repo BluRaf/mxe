@@ -4,11 +4,12 @@ PKG             := qtwebkit
 $(PKG)_WEBSITE  := https://github.com/qtwebkit/qtwebkit
 $(PKG)_DESCR    := QtWebKit
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 00698c5
-$(PKG)_CHECKSUM := 93cf4dc769cad351d68b6ad625445022bab9987113610843245978cd4bd0cf64
+$(PKG)_VERSION  := 5.212.0-alpha4
+$(PKG)_CHECKSUM := 9ca126da9273664dd23a3ccd0c9bebceb7bb534bddd743db31caf6a5a6d4a9e6
 $(PKG)_PATCHES  := $(realpath $(sort $(wildcard $(dir $(lastword $(MAKEFILE_LIST)))/$(PKG)-[0-9]*.patch)))
-$(PKG)_GH_CONF  := qtwebkit/qtwebkit/branches/qtwebkit-dev-wip
-#$(PKG)_URL      := https://github.com/qtwebkit/qtwebkit/archive/qtwebkit-dev-wip.zip
+$(PKG)_SUBDIR   := qtwebkit-$($(PKG)_VERSION)
+$(PKG)_FILE     := qtwebkit-$($(PKG)_VERSION).tar.xz
+$(PKG)_URL      := https://github.com/qtwebkit/qtwebkit/releases/download/qtwebkit-$($(PKG)_VERSION)/$($(PKG)_FILE)
 $(PKG)_DEPS     := cc libxml2 libxslt libwebp qtbase qtquickcontrols \
                    qtsensors qtwebchannel sqlite libtasn1 woff2 gstreamer \
                    gst-libav gst-plugins-bad gst-plugins-good gst-plugins-base gst-plugins-ugly

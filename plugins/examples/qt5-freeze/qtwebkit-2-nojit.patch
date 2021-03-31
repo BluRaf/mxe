@@ -1,0 +1,11 @@
+--- a/Source/JavaScriptCore/runtime/Options.cpp	2020-09-28 16:00:50.617199095 +0200
++++ b/Source/JavaScriptCore/runtime/Options.cpp	2020-09-28 16:01:40.640975826 +0200
+@@ -296,7 +296,7 @@
+ #endif
+ #if OS(WINDOWS) && CPU(X86) 
+     // Disable JIT on Windows if SSE2 is not present 
+-    if (!MacroAssemblerX86::supportsFloatingPoint())
++    //if (!MacroAssemblerX86::supportsFloatingPoint())
+         Options::useJIT() = false;
+ #endif
+     if (Options::dumpDisassembly()

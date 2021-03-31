@@ -10,7 +10,7 @@ $(PKG)_PATCHES  := $(realpath $(sort $(wildcard $(dir $(lastword $(MAKEFILE_LIST
 $(PKG)_SUBDIR   := $(PKG)-opensource-src-$($(PKG)_VERSION)
 $(PKG)_FILE     := $(PKG)-opensource-src-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := https://download.qt.io/new_archive/qt/5.7/$($(PKG)_VERSION)/submodules/$($(PKG)_FILE)
-$(PKG)_DEPS     := cc dbus fontconfig freetds freetype harfbuzz jpeg libmysqlclient libpng openssl pcre postgresql sqlite zlib
+$(PKG)_DEPS     := cc dbus fontconfig freetds freetype harfbuzz jpeg libmysqlclient postgresql libpng openssl pcre sqlite zlib
 
 # allows for side-by-side install with later Qt
 # pkg-config and cmake will need tweaking to really get working
@@ -57,10 +57,11 @@ define $(PKG)_BUILD
             -accessibility \
             -nomake examples \
             -nomake tests \
-            -no-sql-mysql \
+            -plugin-sql-mysql \
+            -mysql_config $(PREFIX)/$(TARGET)/bin/mysql_config \
             -plugin-sql-sqlite \
             -plugin-sql-odbc \
-	    -no-sql-psql \
+            -plugin-sql-psql \
             -plugin-sql-tds -D Q_USE_SYBASE \
             -system-zlib \
             -system-libpng \
@@ -75,9 +76,8 @@ define $(PKG)_BUILD
             -no-pch \
             -v \
             $($(PKG)_CONFIGURE_OPTS)
-            #-plugin-sql-mysql \
-            #-mysql_config $(PREFIX)/$(TARGET)/bin/mysql_config \
-            #-plugin-sql-psql \
+            #-no-sql-mysql \
+	    #-no-sql-psql \
 
     $(MAKE) -C '$(1)' -j '$(JOBS)'
     rm -rf '$(PREFIX)/$(TARGET)/$($(PKG)_VERSION_ID)'
