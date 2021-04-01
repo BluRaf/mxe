@@ -49,7 +49,7 @@ define $(PKG)_BUILD
             -release \
             $(if $(BUILD_STATIC), -static,)$(if $(BUILD_SHARED), -shared,) \
             -prefix '$(PREFIX)/$(TARGET)/$($(PKG)_VERSION_ID)' \
-            -no-icu \
+            -icu \
             -opengl desktop \
             -no-glib \
             -no-sse2 \
